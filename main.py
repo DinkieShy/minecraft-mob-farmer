@@ -2,6 +2,7 @@ import pyautogui as gui
 import time
 import keyboard
 import pydirectinput as di
+import random
 
 RUN = False
 STOP = False
@@ -19,16 +20,16 @@ keyboard.add_hotkey('x', stop)
 
 while not STOP:
 	if RUN:
-		print("run")
+		print("run " + str(random.random()), end="\r")
 		im = gui.screenshot()
 
 		im = im.crop([200, 508, 1720, 509])
 
 		placesToClick = []
 
-		for i in range(0, 1520, 50):
+		for i in range(0, 1520, 10):
 			colour = im.getpixel((i, 0))
-			if colour[2] > 95 and colour[0] < 100 and colour[1] < 100:
+			if 25 < colour[0] and colour[0] < 55 and 20 < colour[1] and colour[1] < 45 and 75 < colour[2] and colour[2] < 115: 
 				placesToClick.append(i-760)
 
 
@@ -43,4 +44,4 @@ while not STOP:
 				# print(gui.position())
 
 			di.move(-lastPos, None)
-	time.sleep(2.5)
+	time.sleep(0.1)
